@@ -3,16 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 242, 242, 242;
+  --background-start-rgb: 242, 242, 242;
+  --background-end-rgb: 242, 242, 242;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 214, 219, 220;
   }
 }
 
@@ -24,4 +23,103 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+} /**
+  * Building blocks
+  *
+  * @author jh3y - jheytompkins.com
+*/ /**
+  * Coffee
+  *
+  * @author jh3y - jheytompkins.com
+*/
+@-webkit-keyframes coffee {
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-200%);
+    transform: translateY(-200%);
+  }
+}
+@keyframes coffee {
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-200%);
+    transform: translateY(-200%);
+  }
+}
+
+.coffee {
+  background: #fff;
+  display: grid;
+  border-radius: 4px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  height: 40px;
+  position: relative;
+  width: 40px;
+  padding: 2px;
+  justify-items: center;
+}
+.coffee:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  content: "";
+  height: 26px;
+  width: 20px;
+  border: 4px solid #fff;
+  position: absolute;
+  top: 50%;
+  margin-top: -13px;
+  margin-left: -10px;
+  left: 100%;
+  border-radius: 4px;
+}
+.coffee div {
+  height: 20px;
+  width: 8px;
+  background: #fff;
+  opacity: 0.8;
+  -webkit-animation: coffee 2s infinite;
+  animation: coffee 2s infinite;
+}
+.coffee div:nth-child(1) {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+.coffee div:nth-child(2) {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+.coffee div:nth-child(3) {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+.filter-content {
+  transition: all 0.6s cubic-bezier(0.93, 0.88, 0.1, 0.8);
+}
+.slidedown {
+  animation: slidedownanimation 0.8s ease;
+}
+.slideup {
+  animation: slideupanimation 0.6s ease;
+}
+@keyframes slidedownanimation {
+  from {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideupanimation {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
 }
