@@ -4,7 +4,7 @@ import { FaSearch, FaArrowRight, FaArrowLeft, FaTired, FaAngleDown, FaArrowUp, F
 import Colors from '@/components/Colors';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import Loading from '@/components/loading';
+import Loading from '@/components/Loading';
 import Modal from '@/components/Modal';
 import Footer from '@/components/Footer';
 import backgroundImage from "../../public/assets/banner-search.jpg";
