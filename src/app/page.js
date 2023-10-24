@@ -269,7 +269,7 @@ export default function Home() {
 
         <Modal data={foodData} closed={modal} togle={toggle} />
 
-        <div onClick={() => gotoHandler('top')} className={`animate__animated  animate__fadeInUp bg-secondary rounded-xl cursor-pointer hover:bg-[#cf6300] transition-colors ease-in-out delay-200  shadow-lg fixed w-14 h-14 z-40 p-4 mt-[90vh] right-[5vw] ${showComponent ? 'block' : 'hidden'} `}>
+        <div onClick={() => gotoHandler('top')} className={`animate__animated  animate__fadeInUp bg-secondary rounded-xl cursor-pointer hover:bg-[#cf6300] transition-colors ease-in-out delay-200  shadow-lg fixed w-14 h-14 z-40 p-4 bottom-[5vh] right-[5vw] ${showComponent ? 'block' : 'hidden'} `}>
           <FaArrowUp size={24} />
         </div>
 
@@ -639,22 +639,23 @@ export default function Home() {
 
                   {
                     filterTab == true ?
-                      <div className={`animate__animated grid grid-cols-3 gap-y-4 ${filterTab == true ? 'animate__slideInDown' : 'slideup'}`} >{
-                        label.map((a, index) =>
-                          <div onClick={() => {
-                            if (healthFilter.includes(a)) {
+                      <div className={`animate__animated grid grid-cols-3 gap-y-4 ${filterTab == true ? 'animate__slideInDown' : 'slideup'}`} >
+                        {
+                          label.map((a, index) =>
+                            <div onClick={() => {
+                              if (healthFilter.includes(a)) {
 
-                              setHealthFilter(healthFilter.filter(b => b !== a));
-                            } else {
+                                setHealthFilter(healthFilter.filter(b => b !== a));
+                              } else {
 
-                              setHealthFilter([...healthFilter, a]);
-                            }
-                          }} className={` rounded-lg ${healthFilter.includes(a) ? 'text-secondary' : ' text-fontdark '}  px-2 `} key={index}>
+                                setHealthFilter([...healthFilter, a]);
+                              }
+                            }} className={` rounded-lg ${healthFilter.includes(a) ? 'text-secondary' : ' text-fontdark '}  px-2 `} key={index}>
 
-                            {
-                              a.replace(/-/g, ' ')}</div>
-                        )
-                      }
+                              {
+                                a.replace(/-/g, ' ')}</div>
+                          )
+                        }
                       </div> : ''
 
 
@@ -744,71 +745,72 @@ export default function Home() {
                         </div>
                       ) : <div></div>
                   }</div>
-                  <div className='text-fontdark flex flex-wrap justify-center p-6 w-full space-y-6 w-1/2'>{
-                    recipeData.length > 0 ? recipeData.slice((page * 10) - 5, page * 10).map((a, index) =>
+                  <div className='text-fontdark flex flex-wrap justify-center p-6 w-full space-y-6 w-1/2'>
+                    {
+                      recipeData.length > 0 ? recipeData.slice((page * 10) - 5, page * 10).map((a, index) =>
 
-                      <div onClick={() => handleRecipe(a)} className='relative h-fit ' key={index}>
-                        <Image className='absolute z-5 shadow-lg mx-[30px] rounded-tl-xl rounded-br-xl'
-                          src={a.recipe.image}
-                          width={120}
-                          height={120}
-                          alt={a.recipe.label}
-                          loading='lazy'
-                        />
-                        <div className='bg-white border-[2px] border-primary shadow-xl h-fit w-[170px] bottom-0 mt-[65px] rounded-bl-xl rounded-tr-xl '>
-                          <p className='pt-16 text-sm font-semibold text-center px-2'>{
-                            a.recipe.label
-                          }</p>
-                          <div className='px-4 flex flex-row justify-around py-2'>
-                            <div className=' font-semibold text-center'>
-                              <p className='text-lg'>{parseInt(a.recipe.yield, 10)}</p>
-                              <p className='text-sm'>Servings</p>
-                            </div>
-                            <div className='text-lg font-semibold text-center '>
-                              <p>{parseInt(a.recipe.calories / a.recipe.yield, 10)}</p>
-                              <p className='text-sm'>Kcal</p>
-                            </div>
-                          </div>
-                          <div className='flex flex-row bg-secondary justify-around text-sm text-fontlight m-2 p-2 rounded-bl-xl rounded-tr-xl shadow-md' >
-                            <div className='text-center'>
-                              <p className='font-semibold'>Protein</p>
-                              <p>{parseInt(a.recipe.totalNutrients.PROCNT.quantity / a.recipe.yield, 10) + 'g'}</p>
-                            </div>
-                            <div className='text-center'>
-                              <p className='font-semibold'>Fat</p>
-                              <p>{parseInt(a.recipe.totalNutrients.FAT.quantity / a.recipe.yield, 10) + 'g'}</p>
-                            </div>
-                            <div className='text-center'>
-                              <p className='font-semibold'>Carbo</p>
-                              <p>{parseInt(a.recipe.totalNutrients.CHOCDF.quantity / a.recipe.yield, 10) + 'g'}</p>
-                            </div>
-                          </div>
-                          <div className='flex flex-wrap p-4'>
-
-                            {
-
-
-                              <div className='text-fontdark text-[10px] font-semibold text-center' key={index}>
-                                {
-                                  a.recipe.healthLabels.map((a, index) =>
-                                    a.replace(/-/g, ' ') + ' • '
-                                  )
-                                }
+                        <div onClick={() => handleRecipe(a)} className='relative h-fit ' key={index}>
+                          <Image className='absolute z-5 shadow-lg mx-[30px] rounded-tl-xl rounded-br-xl'
+                            src={a.recipe.image}
+                            width={120}
+                            height={120}
+                            alt={a.recipe.label}
+                            loading='lazy'
+                          />
+                          <div className='bg-white border-[2px] border-primary shadow-xl h-fit w-[170px] bottom-0 mt-[65px] rounded-bl-xl rounded-tr-xl '>
+                            <p className='pt-16 text-sm font-semibold text-center px-2'>{
+                              a.recipe.label
+                            }</p>
+                            <div className='px-4 flex flex-row justify-around py-2'>
+                              <div className=' font-semibold text-center'>
+                                <p className='text-lg'>{parseInt(a.recipe.yield, 10)}</p>
+                                <p className='text-sm'>Servings</p>
                               </div>
+                              <div className='text-lg font-semibold text-center '>
+                                <p>{parseInt(a.recipe.calories / a.recipe.yield, 10)}</p>
+                                <p className='text-sm'>Kcal</p>
+                              </div>
+                            </div>
+                            <div className='flex flex-row bg-secondary justify-around text-sm text-fontlight m-2 p-2 rounded-bl-xl rounded-tr-xl shadow-md' >
+                              <div className='text-center'>
+                                <p className='font-semibold'>Protein</p>
+                                <p>{parseInt(a.recipe.totalNutrients.PROCNT.quantity / a.recipe.yield, 10) + 'g'}</p>
+                              </div>
+                              <div className='text-center'>
+                                <p className='font-semibold'>Fat</p>
+                                <p>{parseInt(a.recipe.totalNutrients.FAT.quantity / a.recipe.yield, 10) + 'g'}</p>
+                              </div>
+                              <div className='text-center'>
+                                <p className='font-semibold'>Carbo</p>
+                                <p>{parseInt(a.recipe.totalNutrients.CHOCDF.quantity / a.recipe.yield, 10) + 'g'}</p>
+                              </div>
+                            </div>
+                            <div className='flex flex-wrap p-4'>
 
-                            }
+                              {
+
+
+                                <div className='text-fontdark text-[10px] font-semibold text-center' key={index}>
+                                  {
+                                    a.recipe.healthLabels.map((a, index) =>
+                                      a.replace(/-/g, ' ') + ' • '
+                                    )
+                                  }
+                                </div>
+
+                              }
+                            </div>
                           </div>
+
+
+
                         </div>
-
-
-
-                      </div>
-                    ) : <div></div>
-                  }</div>
+                      ) : <div></div>
+                    }</div>
                 </div>
             }
           </div>
-          <div id='search_result' className='md:block hidden animate__animated'>
+          <div id='search_result' className={`md:block hidden animate__animated `}>
 
             {
 
@@ -822,11 +824,7 @@ export default function Home() {
                 <div className='xl:mx-auto xl:container flex mt-8 justify-center md:mx-4 xl:pl-4'>
 
                   <div className='text-fontdark grid grid-cols-3 gap-8 justify-items-center w-full w-full'>
-                    <div className='py-16 space-y-6 w-full text-fontdark'>
 
-                      <div className='text-gray-500 text-center  text-fontdark '>Recipe not found </div>
-                      <div className='flex justify-center text-fontdark '> <FaTired color='gray' size={44} /></div>
-                    </div>
                     {
                       recipeData.length > 0 ?
 
