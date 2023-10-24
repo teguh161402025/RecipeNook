@@ -20,7 +20,7 @@ const Modal = ({ data, closed, togle }) => {
 
 
     return (
-        <div className={`${modal == true ? 'block overscroll-none' : 'hidden'} fixed z-50 h-[100%] w-full bg-black bg-opacity-90  flex items-center justify-center py-4`}>
+        <div className={`${modal == true ? 'block ' : 'hidden'} fixed z-50 h-[100%] w-full bg-black bg-opacity-90  flex items-center justify-center py-4`}>
 
             {
                 data ?
@@ -36,6 +36,8 @@ const Modal = ({ data, closed, togle }) => {
                                     alt={data.recipe.label}
                                     loading="lazy"
                                     sizes="(max-width: 768px) 100vw"
+                                    placeholder="blur"
+                                    blurDataURL={'/assets/Placeholder_image.png'}
                                 />
                                 <div className='px-2 font-bold flex items-center justify-center text-xl'>
                                     <p className='md:pl-12'>{data.recipe.label}</p>
@@ -80,6 +82,8 @@ const Modal = ({ data, closed, togle }) => {
                                                 alt={a.text}
                                                 loading="lazy"
                                                 sizes="(max-width: 768px) 100vw"
+                                                placeholder="blur"
+                                                blurDataURL={'/assets/Placeholder_image.png'}
                                             />
                                             <div className='p-2 text-sm '>{a.text}</div>
 
@@ -173,7 +177,7 @@ const Modal = ({ data, closed, togle }) => {
 
                         </div>
 
-                        <div onClick={() => setModal(false)} className='flex justify-end p-2 cursor-pointer w-full absolute top-0 right-0 '>
+                        <div onClick={() => setModal(false)} className='flex justify-end fixed p-2 cursor-pointer top-0 right-0 '>
                             <AiOutlineClose color={Colors.fontdark} size={24} />
                         </div>
                     </div>

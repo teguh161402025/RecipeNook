@@ -106,6 +106,12 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
+    if (isLoading) {
+      setPage(1);
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY < 1) {
         setShowComponent(false);
@@ -260,7 +266,7 @@ export default function Home() {
 
   return (
     <>
-      <main className='w-full overflow-hidden bg-fixed' style={{
+      <main className={`w-full overflow-hidden bg-fixed  ${isLoading ? 'overscroll-none' : ''}`} style={{
         backgroundImage: `url(${backgroundImage.src})`,
       }}>
         {
@@ -311,6 +317,8 @@ export default function Home() {
                   height={250}
                   alt="food recipe salad recipe "
                   priority='true'
+                  placeholder="blur"
+                  blurDataURL={'/assets/Placeholder_image.png'}
                   style={{ width: 'auto', height: 'auto' }}
                 />
                 <div className='absolute right-0 -rotate-90 h-fit  text-6xl  font-bold text-ornament  mb-4 pt-[20%] mt-12'>Recipe</div>
@@ -360,7 +368,7 @@ export default function Home() {
               <p>Find the perfect recipe to satisfy your cravings. Search for dishes categorized by cuisine type</p>
             </div>
             <div aniscroll='animate__fadeInUp' className='grid grid-cols-2 gap-y-2 md:flex md:divide-x-2 md:p-8 p-2 text-center text-secondary font-semibold text-md xl:text-[1.5vw] xl:py-[5vw] xl:px-[10vw]'>
-              <div onClick={() => foodTypeHandler('Breakfast')} className=' p-8 lg:p-12 hover:shadow-xl transition-transform duration-300 hover:scale-105 bg-fontlight cursor-poi cursor-pointernter'>
+              <div onClick={() => foodTypeHandler('Breakfast')} className='cursor-pointer p-8 lg:p-12 hover:shadow-xl transition-transform duration-300 hover:scale-105 bg-fontlight cursor-poi cursor-pointernter'>
                 <Image className='w-[30vw]'
                   src="/assets/breakfast.png"
                   width={500}
@@ -371,7 +379,7 @@ export default function Home() {
                 <span >Breakfast</span>
 
               </div>
-              <div onClick={() => foodTypeHandler('Brunch')} className='p-8 lg:p-12 hover:shadow-xl transition-transform duration-300 hover:scale-105  bg-fontlight cursor-poi cursor-pointernter'>
+              <div onClick={() => foodTypeHandler('Brunch')} className='cursor-pointer p-8 lg:p-12 hover:shadow-xl transition-transform duration-300 hover:scale-105  bg-fontlight cursor-poi cursor-pointernter'>
                 <Image className='p-2 w-[30vw]'
                   src="/assets/brunch.png"
                   width={500}
@@ -381,7 +389,7 @@ export default function Home() {
                 />
                 <span>Brunch</span>
               </div>
-              <div onClick={() => foodTypeHandler('dinner')} className='p-8 lg:p-12 hover:shadow-xl transition-transform duration-300 hover:scale-105  bg-fontlight cursor-poi cursor-pointernter'>
+              <div onClick={() => foodTypeHandler('dinner')} className='cursor-pointer p-8 lg:p-12 hover:shadow-xl transition-transform duration-300 hover:scale-105  bg-fontlight cursor-poi cursor-pointernter'>
                 <Image className='w-[30vw]'
                   src="/assets/lunch-dinner.png"
                   width={500}
@@ -391,7 +399,7 @@ export default function Home() {
                 />
                 <span>Lunch / Dinner</span>
               </div>
-              <div onClick={() => foodTypeHandler('snack')} className='p-8 hover:shadow-xl transition-transform duration-300 hover:scale-105  bg-fontlight cursor-poi cursor-pointernter'>
+              <div onClick={() => foodTypeHandler('snack')} className='cursor-pointer p-8 hover:shadow-xl transition-transform duration-300 hover:scale-105  bg-fontlight cursor-poi cursor-pointernter'>
                 <Image className='w-[30vw]'
                   src="/assets/snack.png"
                   width={500}
@@ -478,6 +486,7 @@ export default function Home() {
                 style={{
                   objectFit: "cover",
                 }}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 alt='balance diet food recipe'
               />
               <div className='absolute w-full h-full opacity-70 from-fontdark bg-gradient-to-t top-0 z-10'>
@@ -537,6 +546,7 @@ export default function Home() {
                 fill
                 loading='lazy'
                 style={{ objectFit: "cover" }}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 alt='low carb diet food recipe'
 
               />
@@ -558,6 +568,7 @@ export default function Home() {
                 fill
                 loading='lazy'
                 style={{ objectFit: "cover" }}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 alt='low fat diet food recipe'
               />
               <div className='absolute w-full h-full opacity-70  from-fontdark bg-gradient-to-b top-0 '>
@@ -627,7 +638,7 @@ export default function Home() {
           {
             recipeData.length > 0 ?
               <div>
-                <div onClick={() => filterTab == true ? setFilterTab(false) : setFilterTab(true)} className='bg-white text-secondary shadow-md rounded-br-xl rounded-tl-xl mx-4 mt-4 p-2'>
+                <div onClick={() => filterTab == true ? setFilterTab(false) : setFilterTab(true)} className='cursor-pointer bg-white text-secondary shadow-md rounded-br-xl rounded-tl-xl mx-4 mt-4 p-2'>
                   <div className='flex flex-row w-full justify-between'><p className='font-semibold text-md '>Filter</p>
                     <div ><FaAngleDown size={22} /></div>
 
@@ -650,7 +661,7 @@ export default function Home() {
 
                                 setHealthFilter([...healthFilter, a]);
                               }
-                            }} className={` rounded-lg ${healthFilter.includes(a) ? 'text-secondary' : ' text-fontdark '}  px-2 `} key={index}>
+                            }} className={`cursor-pointer rounded-lg ${healthFilter.includes(a) ? 'text-secondary' : ' text-fontdark '}  px-2 `} key={index}>
 
                               {
                                 a.replace(/-/g, ' ')}</div>
@@ -693,6 +704,8 @@ export default function Home() {
                             height={120}
                             alt={a.recipe.label}
                             loading="lazy"
+                            placeholder="blur"
+                            blurDataURL={'/assets/Placeholder_image.png'}
                           />
                           <div className='bg-white border-[2px] border-primary shadow-xl h-fit w-[170px] bottom-0 mt-[65px] rounded-tl-xl rounded-br-xl'>
                             <p className='pt-16 text-sm font-semibold text-center px-2'>{
@@ -756,6 +769,8 @@ export default function Home() {
                             height={120}
                             alt={a.recipe.label}
                             loading='lazy'
+                            placeholder="blur"
+                            blurDataURL={'/assets/Placeholder_image.png'}
                           />
                           <div className='bg-white border-[2px] border-primary shadow-xl h-fit w-[170px] bottom-0 mt-[65px] rounded-bl-xl rounded-tr-xl '>
                             <p className='pt-16 text-sm font-semibold text-center px-2'>{
@@ -837,6 +852,8 @@ export default function Home() {
                               height={120}
                               alt={a.recipe.label}
                               loading="lazy"
+                              placeholder="blur"
+                              blurDataURL={'/assets/Placeholder_image.png'}
                             />
                             <div className='bg-white lg:flex lg:flex-row border-[2px] border-primary shadow-xl  w-full  bottom-0 mt-[65px] rounded-tl-xl rounded-br-xl'>
                               <div>
