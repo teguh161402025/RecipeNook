@@ -20,7 +20,7 @@ const Modal = ({ data, closed, togle }) => {
 
 
     return (
-        <div className={`${modal == true ? 'block' : 'hidden'} fixed z-50 h-[100%] w-full bg-black bg-opacity-90  flex items-center justify-center py-4`}>
+        <div className={`${modal == true ? 'block overscroll-none' : 'hidden'} fixed z-50 h-[100%] w-full bg-black bg-opacity-90  flex items-center justify-center py-4`}>
 
             {
                 data ?
