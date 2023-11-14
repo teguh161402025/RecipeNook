@@ -80,7 +80,7 @@ export default function Home() {
           setTimeout(function () {
             a.target.classList.add('animate__animated', animate)
 
-          }, 300);
+          }, 10);
 
           a.target.addEventListener('animationend', () => {
             a.target.classList.remove(animate);
@@ -345,6 +345,7 @@ export default function Home() {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 alt="food recipe salad recipe"
                 loading='lazy'
+                style={{ width: 'auto', height: 'auto' }}
 
               />
             </div>
@@ -476,7 +477,7 @@ export default function Home() {
           </div>
         </div>
         <div className='bg-fontlight min-h-screen'>
-          <div aniscroll='animate__zoomIn' id='diet' className='grid grid-cols-3 gap-2 py-24 xl:gap-[1vw] xl:py-[5vw]  px-2 lg:px-12 xl:px-44 xl:h-[90vh]'>
+          <div id='diet' className='grid grid-cols-3 gap-2 py-24 xl:gap-[1vw] xl:py-[5vw]  px-2 lg:px-12 xl:px-44 xl:h-[90vh]'>
 
             <div onClick={() => dietHandler('balanced')} className='relative  md:col-span-1 col-span-2 group overflow-hidden md:h-[250px] h-[150px] xl:h-full cursor-pointer'>
               <Image className='group-hover:scale-125 hover:transform transition-transform duration-300 ease-in-out'
@@ -678,7 +679,7 @@ export default function Home() {
 
                   </div>
                 </div>
-                <div>Result for {query ? query : ''}</div>
+                <div className='text-fontdark font-semibold p-6'>Result for {query ? query : ''}</div>
               </div> : <div></div>
           }
           <div className='md:hidden '>
